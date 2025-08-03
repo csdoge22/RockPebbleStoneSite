@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
-        <footer>
-            <p>© 2025 Rock Pebble Stone. All rights reserved.</p>
+        <footer className="navbar flex bg-green-500 p-4 flex justify-center">
+            <p className="text-white text-3xl">© AI Sand Management Solutions. All rights reserved.</p>
         </footer>
     )
 }
