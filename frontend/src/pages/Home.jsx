@@ -1,3 +1,4 @@
+/** This is the home page. It is meant to showcase a brief introduction of the website */
 const Home = () => {
     return (
         <div>
@@ -5,3 +6,4 @@ const Home = () => {
         </div>
     )
 }
+export default Home;
