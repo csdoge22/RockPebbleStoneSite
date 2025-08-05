@@ -1,1 +1,5 @@
-LoginServlet.class
+controller/auth/AuthServlet.class
+controller/user/PasswordServlet.class
+controller/user/UserServlet.class
+controller/StartServlet.class
+dao/CreateDatabase.class

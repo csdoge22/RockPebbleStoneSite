@@ -2,3 +2,4 @@
 model/modelenv/
 distilbert-rps-finetuned/
 rps-nb.pkl
+node_modules/
