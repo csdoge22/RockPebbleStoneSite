@@ -1,5 +1,6 @@
 /Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/src/main/java/dao/CreateDatabase.java
 /Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/src/main/java/DatabaseInitListener.java
 /Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/src/main/java/controller/auth/RegisterServlet.java
+/Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/src/main/java/filters/CORSFilter.java
 /Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/src/main/java/controller/user/UserServlet.java
 /Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/src/main/java/controller/user/PasswordServlet.java

@@ -1,5 +1,6 @@
 controller/user/PasswordServlet.class
 controller/auth/RegisterServlet.class
+dao/CreateDatabase.class
+filters/CORSFilter.class
 controller/user/UserServlet.class
 DatabaseInitListener.class
-dao/CreateDatabase.class
