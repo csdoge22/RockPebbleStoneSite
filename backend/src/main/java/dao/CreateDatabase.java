@@ -53,7 +53,8 @@ public class CreateDatabase {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        try (Statement stmt = conn.prepareStatement(sql2)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql2)) {
+            stmt.execute();
             System.out.println("Tasks table created successfully");
         } catch (SQLException e) {
             System.out.println(e.getMessage());

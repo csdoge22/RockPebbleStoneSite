@@ -1,5 +1,5 @@
-controller/auth/AuthServlet.class
 controller/user/PasswordServlet.class
+controller/auth/RegisterServlet.class
 controller/user/UserServlet.class
-controller/StartServlet.class
+DatabaseInitListener.class
 dao/CreateDatabase.class
