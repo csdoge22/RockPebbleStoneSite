@@ -2,7 +2,7 @@ import React from 'react';
 
 const Board = () => {
   return (
-    <div className="bg-green-900 text-white min-h-screen">
+    <div className="text-white min-h-screen">
       {/* Header Section */}
       <div className="flex justify-center items-center py-4 bg-green-800">
         <input
@@ -29,7 +29,7 @@ const Board = () => {
         </div>
 
         {/* Pebble Column */}
-        <div className="w-1/3 bg-gray-200 p-4 rounded-lg shadow-md border-2 border-blue-500">
+        <div className="w-1/3 bg-gray-200 p-4 rounded-lg shadow-md border border-r-0 border-gray-300">
           <h2 className="text-xl mb-2">Pebble</h2>
           <ul>
             {Array.from({ length: 5 }, (_, index) => (
