@@ -25,6 +25,18 @@ public class RegisterServlet extends HttpServlet {
             response.getWriter().write("{\"success\":false,\"error\":\"You are missing an input\"}");
             return;
         }
+        try(Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/database/sandsolutionsdb.db")) {
+            PreparedStatement checkUserStmt = conn.prepareStatement("SELECT COUNT(*) FROM users WHERE email = ? OR username = ?");
+            checkUserStmt.setString(1, email);
+            checkUserStmt.setString(2, name);
+            if(checkUserStmt.executeQuery().getInt(1) > 0){
+                response.getWriter().write("{\"success\":false,\"error\":\"Email or username already exists\"}");
+                return;
+            }
+        } catch(SQLException e){
+            response.getWriter().write("{\"success\":false,\"error\":\"Database error: " + e.getMessage().replace("\"", "\\\"") + "\"}");
+            return;
+        }
         String sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/database/sandsolutionsdb.db")){
             PreparedStatement pstmt = conn.prepareStatement(sql);
