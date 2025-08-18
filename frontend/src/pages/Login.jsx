@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { login } from '../services/LoginService';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
 import React from 'react';
 
 const Login = () => {
@@ -23,32 +25,39 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  setError('');
+  if (!validateForm()) return;
+  
+  setIsLoading(true);
+  
+  try {
+    const response = await login(form);
+    console.log('Login response:', response); // Debug log
     
-    // Reset previous state
-    setError('');
-    
-    // Validate form
-    if (!validateForm()) return;
-    
-    setIsLoading(true);
-    
-    try {
-      const response = await login(form);
-      
-      if (!response) {
-        setError('No response from server. Please try again.');
-      } else if (response.success) {
-        window.location.href = '/board';
-      } else {
-        setError(response.error || response.message || 'Login failed');
-      }
-    } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
+    if (!response) {
+      setError('No response from server. Please try again.');
+      return;
     }
-  };
+
+    if (response.success) {
+      if (!response.token) {
+        console.error('Login successful but no token received');
+        setError('Authentication error. Please try again.');
+        return;
+      }
+      await modifyToken(response.token);
+      navigate('/board');
+    } else {
+      setError(response.error || 'Login failed');
+    }
+  } catch (err) {
+    console.error('Login error:', err);
+    setError('An unexpected error occurred. Please try again.');
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   // REMOVED isFormValid - always enable the button to provide user feedback
   // const isFormValid = form.username.trim() && form.password.trim();

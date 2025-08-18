@@ -1,29 +1,61 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter } from 'react-router-dom'
-import { Routes, Route } from 'react-router-dom'
-import Layout from './pages/Layout.jsx'
-import Home from './pages/Home.jsx'
-import Login from './pages/Login.jsx'
-import Board from './pages/Board.jsx'
-import Register from './pages/Register.jsx'
-import About from './pages/About.jsx'
+import './App.css';
+import AuthProvider from './auth/AuthProvider';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ProtectedRoute } from './auth/ProtectedRoute';
+import Layout from './pages/Layout';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Board from './pages/Board';
+import Register from './pages/Register';
+import About from './pages/About';
+import Logout from './pages/Logout';
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />, // Navbar is included here exactly once
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/board",
+        element: (
+          <ProtectedRoute>
+            <Board />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/logout",
+        element: (
+          <ProtectedRoute>
+            <Logout />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/board" element={<Board />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/about" element={<About />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;
