@@ -1,1 +1,0 @@
-"jdbc:sqlite:/Users/sonitambashta/Desktop/PYTHON/RockPebbleStoneSite/backend/data/sandsolutionsdb.db"
